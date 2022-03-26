@@ -1,3 +1,9 @@
+/**
+* Runs the GPA Calculator program
+* Charles Tang + Divyarith Shivashok
+* 3/29/22 - Algorithms project
+	*/
+
 import java.util.Scanner;
 
 public class Main{
@@ -17,5 +23,6 @@ public class Main{
 		Student.setGrades();
 		Student.getGrades();
 		System.out.println(Math.round(Student.getGPA() * 100) / 100);
+		System.out.println("Comparisons: " + Student.getComparisons() + ", Swaps: " + Student.getSwaps());
 	}
 }

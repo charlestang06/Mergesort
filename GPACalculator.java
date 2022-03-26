@@ -1,6 +1,15 @@
+/**
+* GPA Calculator class
+* Charles Tang + Divyarith Shivashok
+* 3/29/22 - Algorithms project
+	*/
+
 import java.util.Scanner;
 
 public class GPACalculator{
+	/**
+	* instance fields
+	*/
 	private String firstName;
 	private String lastName;
 	private int grade; 
@@ -19,6 +28,14 @@ public class GPACalculator{
 	private int comparisons;
 	private int swaps;
 
+	/**
+	* Constructor for GPACalcualtor
+* @param first name of student
+* @param last name of student
+* @param number grade of student - ex. 9, 10, 11, 12
+* @param number of classes teh student takes currently
+* sets the default GPA scales, and initializes all instance fields
+	*/
 	public GPACalculator(String firstName, String lastName, int grade, int numClasses){
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -39,6 +56,10 @@ public class GPACalculator{
 		this.swaps = 0;
 	}
 
+	/**
+	* Method to receive student input and to input classes and grades
+	*/
+	
 	public void setGrades(){
 		for (int i = 0; i < this.numClasses; i++){
 			Scanner sc = new Scanner(System.in);
@@ -53,6 +74,10 @@ public class GPACalculator{
 		mergeSort(this.grades, this.classes, this.levels);
 	}
 
+	/**
+	* Prints grades of the student sorted from lowest grade to highest grade
+	*/
+	
 	public void getGrades(){
 		System.out.println("Sorted by grade from least to highest");
 		System.out.println("-------------------");
@@ -62,19 +87,47 @@ public class GPACalculator{
 			}
 		System.out.println("-------------------");
 	}
-	
+
+	/**
+	* Getter method for name of student
+	*/
 	public String getName(){
 		return firstName + " " + lastName;
 	}
 
+	/**
+	* Getter method for grade of student
+	*/
 	public int getGrade(){
 		return grade;
 	}
 
+	/**
+	* Getter method for number of classes of student
+	*/
 	public int getNumClasses(){
 		return numClasses;
 	}
 
+	/**
+	* Getter method for number of compaarisons made by Merge Sort
+	*/
+	public int getComparisons(){
+		return comparisons;
+	}
+
+	/**
+	* Getter method for number of swaps made by Merge Sort
+	*/
+	public int getSwaps(){
+		return swaps;
+	}
+
+	/**
+	* Calculates the GPA of the student
+* weights the grades accordingly to CP, H, and AP scale
+* sums the point values and averages it for GPA
+	*/
 	public double getGPA(){
 		for (int i = 0; i < this.classes.length; i++){
 			if (this.levels[i].equals("CP")){
@@ -105,28 +158,58 @@ public class GPACalculator{
 		return GPA / numClasses;
 	}
 
+	/**
+	* Setter method for classes student takes
+* @param classes array
+	*/ 
 	public void setClasses(String[] classes){
 		assert (classes.length == numClasses);
 		this.classes = classes;
 	}
 
+	/**
+	* Setter method for grades of student's classes
+* @param grades array
+	*/ 
 	public void setGrades(double[] grades){
 		assert (grades.length == numClasses);
 		this.grades = grades;
 	}
 
+	/**
+	* Setter method for level of class (CP, H, AP) of student's classes
+* @param levels array
+	*/ 
 	public void setLevels(String[] levels){
 		assert (levels.length == numClasses);
 		this.levels = levels;
 	}
 
+	/**
+	* Helper method to sortGrades of student
+	*/ 
 	public void sortGrades(){
 		mergeSort(this.grades, this.classes, this.levels);
 	}
+
+	/**
+	* Helper method for mergeSort to make parameters easier
+* @param array of grades
+* @param array of classes
+* @param array of levels of classes
+	*/ 
 	public void mergeSort(double[] arr, String[] classes, String[] levels){
 		mergeSort(arr, classes, levels, 0, arr.length-1);
 	}
-	
+
+	/**
+	* Merge Sort implementation
+* @param array of grades
+* @param classes student takes
+* @param array of levels of classes
+* @param left index to sort in grades array
+* @param right index to sort in grades array
+	*/ 
 	public void mergeSort(double[] arr, String[] classes, String[] levels, int left, int right){
 		if (right <= left){
 			return;
@@ -137,6 +220,17 @@ public class GPACalculator{
 		merge(arr, classes, levels, left, middle, right);
 	}
 
+	/**
+	* Merge subroutine implementation
+* Uses for loop and compariosns
+* sorts classes, levels, according to the sorting of arr
+* @param array of grades
+* @param array of classes
+* @param levels of classes
+* @param left index to sort in grades array
+* @param middle index to sort in grades array
+* @param right index to sort in grades array
+	*/ 
 	public void merge(double[] arr, String[] classes, String[] levels, int left, int middle, int right){
 		double[] temp = new double[arr.length];
 		String[] temp2 = new String[arr.length];
